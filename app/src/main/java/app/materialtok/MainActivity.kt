@@ -67,9 +67,12 @@ private fun MaterialTokApp() {
                 }
                 item {
                     var dynamic by remember { mutableStateOf(true) }
-                    SettingCard(Icons.Rounded.ColorLens, "Dynamic colors", "Use your Android wallpaper colors") {
-                        Switch(dynamic, { dynamic = it })
-                    }
+                    SettingCard(
+                        Icons.Rounded.ColorLens,
+                        "Dynamic colors",
+                        "Use your Android wallpaper colors",
+                        trailing = { Switch(checked = dynamic, onCheckedChange = { dynamic = it }) }
+                    )
                 }
                 item {
                     SettingCard(Icons.Rounded.SimCard, "SIM information", "SIM details are not modified by this app")
