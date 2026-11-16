@@ -36,7 +36,12 @@ jobs:
       - name: Accept Android SDK licenses
         shell: bash
         run: |
+          set +e
           yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses
+          sdk_status=${PIPESTATUS[1]}
+          if [ "$sdk_status" -ne 0 ]; then
+            exit "$sdk_status"
+          fi
 
       - name: Install Android platform
         run: |
